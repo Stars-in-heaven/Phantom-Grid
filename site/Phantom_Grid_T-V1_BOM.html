@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phantom-Grid T-V.1 — Bill of Materials</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@200;300;400;600;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --acid: #b8ff2e;
+  --acid-dim: #7aaa1a;
+  --dark: #0a0a08;
+  --mid: #141410;
+  --panel: #1a1a16;
+  --border: #2a2a22;
+  --text: #c8c8b8;
+  --text-dim: #555544;
+  --text-mid: #888877;
+  --red: #ff3333;
+  --white: #f0f0e8;
+  --amber: #ffaa00;
+}
+
+body {
+  background: #0e0e0c;
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+  padding: 48px 32px;
+  color: var(--text);
+}
+
+/* ── GRID BG ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(184,255,46,0.018) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(184,255,46,0.018) 29px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HEADER ── */
+.header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+}
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.title-block .pre {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 200;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.title-block h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 64px;
+  color: var(--white);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.title-block h1 .acid { color: var(--acid); }
+
+.title-block .sub {
+  font-size: 9px;
+  color: var(--acid-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.header-meta {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.status-dot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 7px;
+  color: var(--red);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 6px; height: 6px;
+  background: var(--red);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--red);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.series-tags {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.stag {
+  font-size: 6px;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 2px 5px;
+  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.stag.active {
+  color: var(--acid);
+  border-color: var(--acid-dim);
+}
+
+/* ── SUMMARY STRIP ── */
+.summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 40px;
+}
+
+.summary-card {
+  background: var(--mid);
+  padding: 16px 20px;
+}
+
+.summary-card .sc-label {
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.summary-card .sc-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 32px;
+  color: var(--acid);
+  line-height: 1;
+}
+
+.summary-card .sc-sub {
+  font-size: 7px;
+  color: var(--text-dim);
+  margin-top: 3px;
+  letter-spacing: 1px;
+}
+
+/* ── SECTION LABELS ── */
+.sec-tag {
+  font-size: 7px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--acid-dim);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sec-tag::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── BOM TABLE ── */
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+.bom-table thead tr {
+  background: var(--panel);
+  border-bottom: 1px solid var(--acid-dim);
+}
+
+.bom-table thead th {
+  font-size: 7px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--acid);
+  font-weight: normal;
+  padding: 10px 14px;
+  text-align: left;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.bom-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.bom-table tbody tr:hover {
+  background: rgba(184,255,46,0.025);
+}
+
+.bom-table tbody td {
+  padding: 11px 14px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+.td-id {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  width: 60px;
+}
+
+.td-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.td-spec {
+  font-size: 11px;
+  color: var(--text-mid);
+  font-family: 'Courier Prime', monospace;
+}
+
+.td-qty {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  color: var(--text);
+  width: 50px;
+}
+
+.td-price {
+  text-align: right;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--acid);
+  white-space: nowrap;
+  width: 100px;
+}
+
+.td-side {
+  width: 80px;
+}
+
+.side-pill {
+  display: inline-block;
+  font-size: 6px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid;
+}
+
+.side-pill.left {
+  color: #4af;
+  border-color: #2a6a8a;
+  background: rgba(64,170,255,0.06);
+}
+
+.side-pill.right {
+  color: #fa4;
+  border-color: #8a5a1a;
+  background: rgba(255,170,64,0.06);
+}
+
+.side-pill.both {
+  color: var(--acid);
+  border-color: var(--acid-dim);
+  background: rgba(184,255,46,0.04);
+}
+
+.td-status {
+  width: 90px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 6px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid;
+}
+
+.status-pill.order {
+  color: var(--amber);
+  border-color: #6a4a00;
+  background: rgba(255,170,0,0.05);
+}
+
+.status-pill.have {
+  color: #4f4;
+  border-color: #1a5a1a;
+  background: rgba(64,255,64,0.04);
+}
+
+.status-pill::before {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ── CATEGORY ROWS ── */
+.cat-row td {
+  padding: 20px 14px 6px;
+  font-size: 7px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: none !important;
+  background: transparent !important;
+}
+
+/* ── TOTAL ROW ── */
+.total-row {
+  border-top: 2px solid var(--acid-dim) !important;
+  background: var(--panel) !important;
+}
+
+.total-row td {
+  padding: 16px 14px !important;
+}
+
+.total-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.total-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: var(--acid);
+  text-align: right;
+}
+
+
+
+/* ── PLAINTEXT BOX ── */
+.plaintext-section {
+  margin-bottom: 40px;
+}
+
+.plaintext-box {
+  background: var(--dark);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  position: relative;
+}
+
+.plaintext-box::before {
+  content: '// PLAINTEXT BOM — COPY & PASTE';
+  position: absolute;
+  top: -1px;
+  left: 16px;
+  font-size: 7px;
+  letter-spacing: 2px;
+  color: var(--acid-dim);
+  background: var(--dark);
+  padding: 0 6px;
+  transform: translateY(-50%);
+}
+
+.plaintext-box pre {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.9;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--acid-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.copy-btn:hover {
+  background: rgba(184,255,46,0.08);
+  color: var(--acid);
+  border-color: var(--acid-dim);
+}
+
+/* ── FOOTER ── */
+.footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer span {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+}
+
+.hex-strip {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  opacity: 0.3;
+  max-width: 400px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="title-block">
+        <div class="pre">Phantom-Grid</div>
+        <h1>BILL OF<br><span class="acid">MATERIALS</span></h1>
+        <div class="sub">// T-V.1 — Tactical Series — Phase 1 Components</div>
+      </div>
+      <div class="header-meta">
+        <div class="status-dot"><div class="dot"></div>Tactical Series — T-V.1</div>
+        <div class="series-tags">
+          <div class="stag active">T — Tactical</div>
+          <div class="stag">S — Survival</div>
+          <div class="stag">X — Exp.</div>
+          <div class="stag">C — Cyber</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY STRIP -->
+  <div class="summary-strip">
+    <div class="summary-card">
+      <div class="sc-label">// Est. Total</div>
+      <div class="sc-val">~£55</div>
+      <div class="sc-sub">Low end estimate</div>
+    </div>
+    <div class="summary-card">
+      <div class="sc-label">// Components</div>
+      <div class="sc-val">19</div>
+      <div class="sc-sub">Line items</div>
+    </div>
+    <div class="summary-card">
+      <div class="sc-label">// To Order</div>
+      <div class="sc-val">19</div>
+      <div class="sc-sub">AliExpress cart</div>
+    </div>
+    <div class="summary-card">
+      <div class="sc-label">// In Hand</div>
+      <div class="sc-val">0</div>
+      <div class="sc-sub">Already owned</div>
+    </div>
+  </div>
+
+  <!-- BOM TABLE -->
+  <div class="sec-tag">// Component Manifest</div>
+  <table class="bom-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Component</th>
+        <th>Spec / Notes</th>
+        <th style="text-align:center">Qty</th>
+        <th>Side</th>
+        <th style="text-align:right">Est. Price</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- COMPUTE -->
+      <tr class="cat-row"><td colspan="7">— Compute</td></tr>
+      <tr>
+        <td class="td-id">BOM-01</td>
+        <td class="td-name">ESP32-C6 SuperMini</td>
+        <td class="td-spec">ESP32-C6FH4 · 4MB Flash · TYPE-C · WiFi/BT</td>
+        <td class="td-qty">2</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£2.75 ea</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- DISPLAYS -->
+      <tr class="cat-row"><td colspan="7">— Displays</td></tr>
+      <tr>
+        <td class="td-id">BOM-02</td>
+        <td class="td-name">0.91" OLED</td>
+        <td class="td-spec">128×32 · I²C · SSD1306 · 3.3V/5V — Tactical Panel</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£1.99</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-03</td>
+        <td class="td-name">1.5" OLED</td>
+        <td class="td-spec">128×128 · I²C · SSD1327 · 3.3V — Overwatch Panel</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£4.02</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-04</td>
+        <td class="td-name">2.4" TFT ILI9341</td>
+        <td class="td-spec">240×320 · SPI · Touch Panel — Archive Terminal</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill right">Right</span></td>
+        <td class="td-price">£4.62</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- STORAGE -->
+      <tr class="cat-row"><td colspan="7">— Storage</td></tr>
+      <tr>
+        <td class="td-id">BOM-05</td>
+        <td class="td-name">microSD Module</td>
+        <td class="td-spec">SPI · TF Card Module — air-gap storage</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill right">Right</span></td>
+        <td class="td-price">£0.46</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-06</td>
+        <td class="td-name">SanDisk microSD</td>
+        <td class="td-spec">64GB · Ultra · Class 10 — select 64GB at checkout</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill right">Right</span></td>
+        <td class="td-price">£5.79</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- POWER -->
+      <tr class="cat-row"><td colspan="7">— Power</td></tr>
+      <tr>
+        <td class="td-id">BOM-07</td>
+        <td class="td-name">LiPo Battery</td>
+        <td class="td-spec">3.7V · 2000mAh · 103450 · 4x pack</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£7.71</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-08</td>
+        <td class="td-name">TP4056 Charger</td>
+        <td class="td-spec">TYPE-C · 1A · Dual Protection · DW01 chip · 10x pack</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£1.35</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-09</td>
+        <td class="td-name">Buck Converter</td>
+        <td class="td-spec">3.5A · DC-DC Step-Down · set to 3.3V output</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£2.29</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-10</td>
+        <td class="td-name">JST PH 2.0 Connectors</td>
+        <td class="td-spec">2-pin · Male + Female · battery connector</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£0.64</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- I²C -->
+      <tr class="cat-row"><td colspan="7">— I²C Bus</td></tr>
+      <tr>
+        <td class="td-id">BOM-11</td>
+        <td class="td-name">TCA9548A Multiplexer</td>
+        <td class="td-spec">1-to-8 I²C · addr 0x70 · resolves OLED address conflict</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£0.86</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- INPUT -->
+      <tr class="cat-row"><td colspan="7">— Input</td></tr>
+      <tr>
+        <td class="td-id">BOM-12</td>
+        <td class="td-name">5-Way Nav Button</td>
+        <td class="td-spec">5D Joystick · breakout board · Up/Down/Left/Right/Press · direct GPIO</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill left">Left</span></td>
+        <td class="td-price">£1.24</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-13</td>
+        <td class="td-name">Tactile Buttons</td>
+        <td class="td-spec">5x · direct GPIO · right side navigation</td>
+        <td class="td-qty">5</td>
+        <td class="td-side"><span class="side-pill right">Right</span></td>
+        <td class="td-price">£1–3</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- WIRING -->
+      <tr class="cat-row"><td colspan="7">— Wiring & Passives</td></tr>
+      <tr>
+        <td class="td-id">BOM-14</td>
+        <td class="td-name">Rainbow Ribbon Cable</td>
+        <td class="td-spec">1M · 1.27mm pitch · hinge link + prototyping</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£3.44</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <tr>
+        <td class="td-id">BOM-16</td>
+        <td class="td-name">10k Resistors</td>
+        <td class="td-spec">1/4W · 1% · 100x kit — SD MISO pull-up</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£0.88</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-17</td>
+        <td class="td-name">100nF Capacitors</td>
+        <td class="td-spec">SMD 0603 · ceramic · decoupling on power pins</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£2.47</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- ENCLOSURE -->
+      <tr class="cat-row"><td colspan="7">— Enclosure</td></tr>
+      <tr>
+        <td class="td-id">BOM-18</td>
+        <td class="td-name">Hinges</td>
+        <td class="td-spec">2x · 180° foldable · screw-on · furniture grade</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£2.40</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+      <tr>
+        <td class="td-id">BOM-19</td>
+        <td class="td-name">Screws + Standoffs</td>
+        <td class="td-spec">M2/M3 assortment · mounting hardware</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">—</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- TOOLS -->
+      <tr class="cat-row"><td colspan="7">— Tools / Transfer</td></tr>
+      <tr>
+        <td class="td-id">BOM-20</td>
+        <td class="td-name">USB-C SD Reader</td>
+        <td class="td-spec">6-in-1 OTG · air-gap file transfer tool</td>
+        <td class="td-qty">1</td>
+        <td class="td-side"><span class="side-pill both">Both</span></td>
+        <td class="td-price">£2.01</td>
+        <td class="td-status"><span class="status-pill order">To Order</span></td>
+      </tr>
+
+      <!-- TOTAL -->
+      <tr class="total-row">
+        <td colspan="5"><span class="total-label">Estimated Build Total</span></td>
+        <td colspan="2"><span class="total-val">~£43–80</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- PLAINTEXT BOM -->
+  <div class="plaintext-section">
+    <div class="sec-tag">// Plaintext — Copy & Paste</div>
+    <div class="plaintext-box">
+      <button class="copy-btn" onclick="copyBOM()">Copy</button>
+      <pre id="bom-text">PHANTOM GRID T-V.1 — BILL OF MATERIALS
+═══════════════════════════════════════════════════════════════
+ID       COMPONENT              QTY   SIDE    PRICE    STATUS
+───────────────────────────────────────────────────────────────
+BOM-01   ESP32-C6 SuperMini      x2   Both    £2.75ea  To Order
+BOM-02   0.91" OLED (128x32)     x1   Left    £1.99    To Order
+BOM-03   1.5" OLED (128x128)     x1   Left    £4.02    To Order
+BOM-04   2.4" TFT ILI9341        x1   Right   £4.62    To Order
+BOM-05   microSD SPI Module      x1   Right   £0.46    To Order
+BOM-06   SanDisk microSD 64GB    x1   Right   £5.79    To Order
+BOM-07   LiPo 3.7V 2000mAh       x1   Left    £7.71    To Order
+BOM-08   TP4056 Dual Prot. 10x   x1   Left    £1.35    To Order
+BOM-09   Buck Converter 3.5A     x1   Left    £2.29    To Order
+BOM-10   JST PH 2.0 Connectors   x1   Left    £0.64    To Order
+BOM-11   TCA9548A Multiplexer    x1   Left    £0.86    To Order
+BOM-12   5-Way Nav Button        x1   Left    £1.24    To Order
+BOM-13   Tactile Buttons         x5   Right   £1–3     To Order
+BOM-14   Rainbow Ribbon Cable    x1   Both    £3.44    To Order
+BOM-16   10k Resistors (100x)    x1   Both    £0.88    To Order
+BOM-17   100nF Capacitors SMD    x1   Both    £2.47    To Order
+BOM-18   Hinges (2x)             x1   Both    £2.40    To Order
+BOM-19   Screws + Standoffs      x1   Both    —        To Order
+BOM-20   USB-C SD Card Reader    x1   Both    £2.01    To Order
+═══════════════════════════════════════════════════════════════
+EST. TOTAL (to order):                        ~£43–80
+═══════════════════════════════════════════════════════════════
+NOTES:
+- Buck converter: verify set to 3.3V output before use
+- SanDisk: select 64GB variant at checkout
+═══════════════════════════════════════════════════════════════
+PG-T-V.1 / REV.002 / ENCRYPTED / AIR-GAPPED</pre>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>PG-T-V.1 / REV.002 / BOM</span>
+    <div class="hex-strip">4748 2d54 2d56 312e 3020 2f2f 424f 4d2f 5441 4354 4943 414c 2f45 4e43 5259 5054 4544</div>
+    <span>phantomgrid.io</span>
+  </div>
+
+</div>
+
+<script>
+function copyBOM() {
+  const text = document.getElementById('bom-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied';
+    btn.style.color = 'var(--acid)';
+    setTimeout(() => { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
