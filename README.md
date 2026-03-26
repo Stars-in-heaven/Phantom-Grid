@@ -97,11 +97,15 @@ phantom-grid/
 
 ## Progress
 
-Left side ( Tactical over-watch Panel )
+### Left side ( Tactical over-watch Panel )
 | Schematic        | PCB           | 3d-view  |
 | ------------- |:-------------:| -----:|
-|               |               |         |
+| <img src="https://i.postimg.cc/zvTRQBrt/Screenshot-2026-03-26-at-15-27-15.png">              | <img src="https://i.postimg.cc/Qt477Pqy/Screenshot-2026-03-26-at-15-21-14.png"> | <img src="https://i.postimg.cc/nrXDGkd1/Screenshot-2026-03-26-at-15-23-32.png">        |
 
+### Right side ( Archive Terminal Panel )
+| Schematic        | PCB           | 3d-view  |
+| ------------- |:-------------:| -----:|
+| <img src=""> | <img src=""> | <img src=""> |
 
 
 ---
