@@ -97,8 +97,7 @@ phantom-grid/
 
 ## Progress
 
-| Left side (Tactical over watch Panel )|
-| ------------- |:-------------:| -----:|
+Left side ( Tactical over-watch Panel )
 | Schematic        | PCB           | 3d-view  |
 | ------------- |:-------------:| -----:|
 |               |               |         |
