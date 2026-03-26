@@ -4,7 +4,7 @@
 
 Phantom Grid is a series of purpose-built handheld devices engineered for those who operate outside the comfort of connectivity. No Wi-Fi. No cloud sync. No IP assignment. Every hardware and firmware decision is governed by a single principle: **security first, convenience never.**
 
-https://phantom-grid.netlify.app - our site :0
+https://phantom-grid.netlify.app - our site :0 (has some issues/WIP)
 
 ---
 
