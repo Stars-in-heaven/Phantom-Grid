@@ -95,7 +95,7 @@ phantom-grid/
 
 ---
 
-## Progress
+## Progress --  T-V.1
 
 ### Left side ( Tactical over-watch Panel )
 | Schematic        | PCB           | 3d-view  |
@@ -106,6 +106,9 @@ phantom-grid/
 | Schematic        | PCB           | 3d-view  |
 | ------------- |:-------------:| -----:|
 | <img src="https://i.postimg.cc/L4TnWrKn/Screenshot-2026-03-26-at-15-30-06.png"> | <img src="https://i.postimg.cc/Dfg8NtV9/Screenshot-2026-03-26-at-15-22-41.png"> | <img src="https://i.postimg.cc/Pf4P7Bsx/Screenshot-2026-03-26-at-16-02-29.png"> |
+
+### ENCLOSURE:
+<img src="https://i.postimg.cc/43m0CCF0/Screenshot-2026-03-26-at-16-07-35.png">
 
 
 ---
