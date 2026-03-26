@@ -105,7 +105,7 @@ phantom-grid/
 ### Right side ( Archive Terminal Panel )
 | Schematic        | PCB           | 3d-view  |
 | ------------- |:-------------:| -----:|
-| <img src=""> | <img src=""> | <img src=""> |
+| <img src="https://i.postimg.cc/L4TnWrKn/Screenshot-2026-03-26-at-15-30-06.png"> | <img src="https://i.postimg.cc/Dfg8NtV9/Screenshot-2026-03-26-at-15-22-41.png"> | <img src="https://i.postimg.cc/Pf4P7Bsx/Screenshot-2026-03-26-at-16-02-29.png"> |
 
 
 ---
