@@ -47,11 +47,13 @@ Files are loaded onto the microSD card by **physically removing it**, writing vi
 ## Build Phases
 
 - [x] **Phase 1** — Architecture & Pinout
-- [ ] **Phase 2** — Breadboard Prototype
-- [ ] **Phase 3** — Firmware Foundation
-- [ ] **Phase 4** — Feature Layer
-- [ ] **Phase 5** — Firmware Hardening
-- [ ] **Phase 6** — Physical Build
+- [x] **Phase 2** — Breadboard Prototype
+- [x] **Phase 3** — Firmware Foundation
+- [x] **Phase 4** — Feature Layer
+- [x] **Phase 5** — Firmware Hardening
+- [x] **Phase 6** — Physical Build
+
+ (working on getting the parts to build the first prototype now)
 
 ---
 
