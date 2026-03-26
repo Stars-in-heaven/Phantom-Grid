@@ -35,7 +35,7 @@ The first Tactical series device. Dual-panel, hinged form factor with three inde
 | Display | Role | Interface |
 |---------|------|-----------|
 | 0.91" OLED 128×32 | Battery, time, date | I²C |
-| 1.5" OLED 128×128 | GPS, temperature, sensor data | I²C via TCA9548A |
+| 1.5" OLED 128×128 | GPS, moisture, sensor data | I²C via TCA9548A |
 | 2.4" TFT ILI9341 | File browser, archive terminal | SPI |
 
 ### Storage
@@ -95,14 +95,15 @@ phantom-grid/
 
 ---
 
-## Licensing
+## Progress
 
-| What | Licence |
-|------|---------|
-| PCB files, enclosure, skeleton firmware | [CERN OHL-S v2](./LICENSE) — open hardware, strongly reciprocal |
-| Full feature firmware | Proprietary — binary only, never released |
+| Left side (Tactical over watch Panel )|
+| ------------- |:-------------:| -----:|
+| Schematic        | PCB           | 3d-view  |
+| ------------- |:-------------:| -----:|
+|               |               |         |
 
-The skeleton code and hardware files are open — you can use, modify and build on them freely, but any changes you distribute must be released under the same licence. The full firmware powering commercial units is proprietary and protected. It is never distributed in source form.
+
 
 ---
 
