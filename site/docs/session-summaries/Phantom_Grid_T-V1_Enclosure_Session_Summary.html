@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phantom Grid T-V.1 — Enclosure Session Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow+Condensed:wght@200;300;400;600;700;900&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --acid: #b8ff2e;
+  --acid-dim: #7aaa1a;
+  --dark: #0a0a08;
+  --mid: #141410;
+  --panel: #1a1a16;
+  --border: #2a2a22;
+  --text: #c8c8b8;
+  --text-dim: #555544;
+  --text-mid: #888877;
+  --red: #ff3333;
+  --white: #f0f0e8;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(184,255,46,0.016) 29px),
+    repeating-linear-gradient(90deg, transparent, transparent 28px, rgba(184,255,46,0.016) 29px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,10,8,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.nav-logo span { color: var(--acid); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--acid); }
+
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  color: var(--acid-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 5px; height: 5px;
+  background: var(--acid);
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--acid);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* ── LAYOUT ── */
+section {
+  position: relative;
+  z-index: 1;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ── HEADER ── */
+.doc-header {
+  padding-top: 52px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.header-accent {
+  position: absolute;
+  top: 52px; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--acid), transparent 60%);
+}
+
+.header-ghost {
+  position: absolute;
+  right: -10px;
+  bottom: -20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 200px;
+  color: rgba(184,255,46,0.028);
+  line-height: 1;
+  letter-spacing: -4px;
+  pointer-events: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.header-inner {
+  padding: 48px 0 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.doc-pre {
+  font-size: 8px;
+  letter-spacing: 5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.doc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 80px);
+  color: var(--white);
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+}
+.doc-title .acid { color: var(--acid); }
+
+.doc-meta {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+}
+.meta-tag.active {
+  color: var(--acid);
+  border-color: var(--acid-dim);
+}
+
+/* ── SECTION SHARED ── */
+.sec-tag {
+  font-size: 7px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--acid-dim);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-tag::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.sec-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: var(--white);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+.sec-title em { color: var(--acid); font-style: normal; }
+
+/* ── CONTENT BLOCKS ── */
+.content-section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.body-text {
+  font-family: 'Courier Prime', monospace;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+  max-width: 720px;
+}
+.body-text strong { color: var(--white); }
+
+.sub-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 28px 0 10px;
+}
+
+/* ── TABLES ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 11px;
+}
+.data-table th {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--acid);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.data-table td {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 9px 14px;
+  background: var(--mid);
+  vertical-align: top;
+}
+.data-table tr:hover td { background: rgba(184,255,46,0.025); }
+.data-table td.val { color: var(--white); }
+.data-table td.verdict-good { color: var(--acid); }
+.data-table td.verdict-bad { color: var(--red); }
+.data-table td.verdict-mid { color: var(--text-mid); }
+
+/* ── STEP LIST ── */
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 16px 0;
+}
+.step-item {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: rgba(184,255,46,0.12);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+}
+.step-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+.step-desc {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ── BULLET LIST ── */
+.bullet-list {
+  list-style: none;
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bullet-list li {
+  font-family: 'Courier Prime', monospace;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+  padding-left: 16px;
+  position: relative;
+}
+.bullet-list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--acid);
+  font-size: 14px;
+}
+
+/* ── WARN NOTES ── */
+.warn-block {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.warn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  color: var(--text-mid);
+  font-style: italic;
+  padding: 6px 10px;
+  border-left: 2px solid var(--acid-dim);
+  background: rgba(184,255,46,0.025);
+  line-height: 1.5;
+}
+.warn::before { content: '⚠ '; color: var(--acid); }
+
+/* ── QUOTE ── */
+.quote-block {
+  border-left: 2px solid var(--acid);
+  padding-left: 16px;
+  margin: 20px 0;
+}
+.quote-block p {
+  font-family: 'Courier Prime', monospace;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ── SPEC CARD GRID ── */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+.spec-card {
+  background: var(--mid);
+  padding: 20px;
+}
+.spec-card .sp-label {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.spec-card .sp-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  color: var(--acid);
+  line-height: 1;
+}
+.spec-card .sp-unit {
+  font-size: 11px;
+  color: var(--text-mid);
+  margin-top: 2px;
+}
+
+/* ── STATUS BADGE ── */
+.phase-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  margin-top: 20px;
+}
+.phase-row {
+  background: var(--dark);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.phase-row.done { background: rgba(184,255,46,0.025); }
+.ph-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 40px;
+  color: rgba(184,255,46,0.08);
+  line-height: 1;
+  width: 48px;
+  flex-shrink: 0;
+}
+.phase-row.done .ph-num { color: rgba(184,255,46,0.25); }
+.ph-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  flex: 1;
+}
+.phase-row.done .ph-title { color: var(--white); }
+.ph-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-family: 'Courier Prime', monospace;
+  flex: 2;
+}
+.ph-status {
+  font-size: 7px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid;
+  flex-shrink: 0;
+}
+.ph-status.complete { color: var(--acid); border-color: var(--acid-dim); }
+.ph-status.pending { color: var(--text-dim); border-color: var(--border); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.foot-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.foot-logo span { color: var(--acid); }
+.hex {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  opacity: 0.25;
+}
+.foot-right {
+  font-size: 7px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  text-align: right;
+  line-height: 1.8;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Phantom<span>Grid</span></div>
+  <ul class="nav-links">
+    <li><a href="#screws">Screws</a></li>
+    <li><a href="#model">3D Model</a></li>
+    <li><a href="#hinge">Hinge</a></li>
+    <li><a href="#enclosure">Enclosure</a></li>
+    <li><a href="#next">Next Steps</a></li>
+  </ul>
+  <div class="nav-status"><div class="dot"></div>Enclosure In Progress</div>
+</nav>
+
+<!-- HEADER -->
+<section class="doc-header">
+  <div class="header-accent"></div>
+  <div class="header-ghost">CASE</div>
+  <div class="container">
+    <div class="header-inner">
+      <div class="doc-pre">// Phantom Grid T-V.1 — Session Summary</div>
+      <div class="doc-title">
+        ENCLOSURE<br>
+        <span class="acid">& HINGE.</span>
+      </div>
+      <div class="doc-meta">
+        <div class="meta-tag active">Phase 1 — Complete</div>
+        <div class="meta-tag active">Enclosure — In Progress</div>
+        <div class="meta-tag">Phase 2 — Pending</div>
+        <div class="meta-tag">PG-T-V.1 / REV.002</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: SCREWS -->
+<section class="content-section" id="screws">
+  <div class="container">
+    <div class="sec-tag">// 01 — Screw Identification</div>
+    <div class="sec-title">Hinge <em>Screws.</em></div>
+
+    <p class="body-text">
+      Started by physically measuring the hinge screws with a caliper. Identified as a <strong>self-tapping countersunk screw</strong> — pointed tip cuts its own thread into the print, no pre-tapped hole needed.
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Measured Value</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Shank diameter</td><td class="val">2.6mm</td><td>Threaded shaft</td></tr>
+        <tr><td>Head diameter</td><td class="val">5.1mm</td><td>Flat countersunk top</td></tr>
+        <tr><td>Total length</td><td class="val">15.2mm</td><td>Tip to top of head</td></tr>
+        <tr><td>Head type</td><td class="val">Countersunk</td><td>Sits flush when driven in</td></tr>
+        <tr><td>Screw type</td><td class="val">Self-tapping</td><td>Pointed tip, cuts own thread</td></tr>
+      </tbody>
+    </table>
+
+    <div class="warn-block">
+      <div class="warn">Screws were ultimately too large to fit the enclosure. Hinge attachment method was changed — see Section 3.</div>
+      <div class="warn">15.2mm is long for a small hinge. When choosing filament, PETG handles self-tapping screws better than PLA — PLA can crack under thread-cutting stress.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: 3D MODEL -->
+<section class="content-section" id="model">
+  <div class="container">
+    <div class="sec-tag">// 02 — Fusion 360 Screw Model</div>
+    <div class="sec-title">3D <em>Modelling.</em></div>
+
+    <p class="body-text">
+      Searched GrabCAD, TraceParts, and McMaster-Carr for a pre-made STEP file. No suitable match found for a 2.6mm self-tapping countersunk screw. Decision made to <strong>model from scratch using the revolve method</strong> in Fusion 360.
+    </p>
+
+    <div class="sub-heading">Sketch Profile — Revolve Method</div>
+    <p class="body-text">Draw half the cross-section on the YZ plane, then revolve 360° around the Y axis.</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">New Component</div>
+          <div class="step-desc">Right click top level → New Component → name it <code>screw_M2.6x15</code></div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Sketch Shaft</div>
+          <div class="step-desc">Rectangle on YZ plane — 1.3mm wide (half of 2.6mm) × 12.7mm tall. Left edge on centre axis.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Sketch Head</div>
+          <div class="step-desc">Trapezoid above shaft — 2.55mm wide at top (half of 5.1mm), narrowing to 1.3mm over 2.5mm height.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Sketch Point</div>
+          <div class="step-desc">Triangle below shaft — 1.3mm base × 1.5mm tall. Left edge on centre axis.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Revolve</div>
+          <div class="step-desc">Create → Revolve → select full profile → axis: Y axis → 360°.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">Threads (optional)</div>
+          <div class="step-desc">Solid → Modify → Thread → select shaft face → check Modelled. Cosmetic only.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-heading">Using the Model for Hole Cutting</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Method</th><th>Best For</th><th>How</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="val">Combine / Cut</td>
+          <td>One-off holes in specific locations</td>
+          <td>Position screw → Modify → Combine → operation: Cut</td>
+        </tr>
+        <tr>
+          <td class="val">Hole Tool</td>
+          <td>Multiple identical holes across the enclosure</td>
+          <td>Solid → Modify → Hole → Countersink → 2.7mm shank / 5.2mm CS / 90°</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: HINGE -->
+<section class="content-section" id="hinge">
+  <div class="container">
+    <div class="sec-tag">// 03 — Hinge Design</div>
+    <div class="sec-title">Printed Barrel <em>Hinge.</em></div>
+
+    <p class="body-text">
+      The original leaf hinge screws were too large for the enclosure. Decision made to <strong>ditch separate hinge hardware entirely</strong> and design a barrel hinge directly into the print. The case spine becomes the hinge — no external components at all.
+    </p>
+
+    <div class="quote-block">
+      <p>"The knuckles from each side alternate and slot into each other. One continuous pin runs through the whole block top to bottom. Nothing to source, nothing to buy."</p>
+    </div>
+
+    <div class="sub-heading">Layout</div>
+    <ul class="bullet-list">
+      <li>Two hinge points along the spine — one near top, one near middle</li>
+      <li>3 knuckles per hinge point — alternating between left and right panels</li>
+      <li>4-wire hinge cable routed via a channel cut along the outside of the spine between the two hinges</li>
+      <li>Pin retained by U-bend pocket + epoxy — self-retaining, cannot slide out</li>
+    </ul>
+
+    <div class="sub-heading">Pin — Stiff Safety Pin Wire</div>
+    <p class="body-text">Large safety pin, main straight shaft only. Not the coil end.</p>
+
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="sp-label">// Pin Diameter</div>
+        <div class="sp-val">0.9<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">Measured wire</div>
+      </div>
+      <div class="spec-card">
+        <div class="sp-label">// Channel Diameter</div>
+        <div class="sp-val">1.1<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">0.2mm clearance</div>
+      </div>
+      <div class="spec-card">
+        <div class="sp-label">// Knuckle OD</div>
+        <div class="sp-val">4<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">~1.45mm wall</div>
+      </div>
+      <div class="spec-card">
+        <div class="sp-label">// Knuckle Height</div>
+        <div class="sp-val">4<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">Per knuckle</div>
+      </div>
+      <div class="spec-card">
+        <div class="sp-label">// Block Height</div>
+        <div class="sp-val">12<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">3 knuckles total</div>
+      </div>
+      <div class="spec-card">
+        <div class="sp-label">// Knuckle Gap</div>
+        <div class="sp-val">0.2<span style="font-size:16px;color:var(--text-mid)">mm</span></div>
+        <div class="sp-unit">Between knuckles</div>
+      </div>
+    </div>
+
+    <div class="sub-heading">Fusion 360 Modelling Steps</div>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Model One Knuckle</div>
+          <div class="step-desc">Cylinder — 4mm OD, 1.1mm bore, 4mm tall.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">Pattern × 3</div>
+          <div class="step-desc">Rectangular pattern along the spine edge. 0.2mm gaps between each knuckle.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Boolean Join</div>
+          <div class="step-desc">Join knuckles to their respective panel body — left knuckles to left panel, right to right.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">04</div>
+        <div>
+          <div class="step-title">Cut Alternating Gaps</div>
+          <div class="step-desc">Cut the interlock gaps so left and right knuckles slot into each other cleanly.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">05</div>
+        <div>
+          <div class="step-title">Cut Cable Channel</div>
+          <div class="step-desc">Channel alongside the knuckle blocks for the 4-wire hinge cable.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">06</div>
+        <div>
+          <div class="step-title">Add U-Bend Pocket</div>
+          <div class="step-desc">1.5mm deep × 2mm wide pocket at one end of the pin channel. Epoxy the U-bend here.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-block">
+      <div class="warn">Use the main straight shaft of the safety pin only — not anywhere near the coil end.</div>
+      <div class="warn">Paperclip wire is an alternative but safety pin wire is stiffer — less flex under repeated use.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: ENCLOSURE SPLIT -->
+<section class="content-section" id="enclosure">
+  <div class="container">
+    <div class="sec-tag">// 04 — Enclosure Split</div>
+    <div class="sec-title">Bottom <em>Access.</em></div>
+
+    <p class="body-text">
+      Three split options were considered. Bottom split chosen — hidden from the use orientation, full interior access, and the main body remains one continuous rigid piece.
+    </p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Option</th><th>Verdict</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Top split</td>
+          <td class="verdict-bad">Rejected</td>
+          <td>Screws visible next to displays. Risks cracking near screen cutouts over time.</td>
+        </tr>
+        <tr>
+          <td>Back split</td>
+          <td class="verdict-mid">Considered</td>
+          <td>Clean exterior but complicates cable access and battery replacement.</td>
+        </tr>
+        <tr>
+          <td>Bottom split</td>
+          <td class="verdict-good">Chosen</td>
+          <td>Hidden during use. Full interior access. Strongest main body structure.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-heading">Prototype Fastening Approach</div>
+    <p class="body-text">
+      Rather than modelling screw bosses at this stage — print the case, <strong>drill pilot holes by hand</strong>, drive the self-tapping screws in manually. Faster for a first prototype and the results will inform the next revision.
+    </p>
+
+    <div class="warn-block">
+      <div class="warn">Use a 2mm drill bit for 2.6mm self-tapping screws — gives the thread material to bite into without splitting the print.</div>
+      <div class="warn">Drill slowly — high speed melts PLA/PETG instead of cutting cleanly.</div>
+      <div class="warn">If the print cracks near a hole, the wall is too thin — thicken it in the next revision.</div>
+      <div class="warn">Minimum 1.5mm wall on each side of the split edge. Minimum 2mm bottom plate thickness to prevent flex.</div>
+      <div class="warn">Leave extra cable slack inside — battery access means opening the case without stressing the hinge cable.</div>
+    </div>
+
+    <div class="sub-heading">Assembly Order</div>
+    <ul class="bullet-list">
+      <li>Install displays through front/top cutouts first</li>
+      <li>Route hinge cable through spine channel before closing</li>
+      <li>Feed PCBs in through the bottom last</li>
+      <li>Check largest component clears the bottom opening before committing to final split dimensions</li>
+    </ul>
+  </div>
+</section>
+
+<!-- SECTION 5: NEXT STEPS -->
+<section class="content-section" id="next">
+  <div class="container">
+    <div class="sec-tag">// 05 — Next Steps</div>
+    <div class="sec-title">Build <em>Phases.</em></div>
+
+    <div class="phase-strip">
+      <div class="phase-row done">
+        <div class="ph-num">1</div>
+        <div class="ph-title">Architecture & Pinout</div>
+        <div class="ph-desc">Dual ESP32 architecture, full GPIO allocation, power chain and hinge wiring defined.</div>
+        <div class="ph-status complete">Complete</div>
+      </div>
+      <div class="phase-row done">
+        <div class="ph-num">—</div>
+        <div class="ph-title">Enclosure Design</div>
+        <div class="ph-desc">Barrel hinge modelled. Bottom split confirmed. Prototype fastening approach set.</div>
+        <div class="ph-status complete">Complete</div>
+      </div>
+      <div class="phase-row">
+        <div class="ph-num">2</div>
+        <div class="ph-title">Breadboard Prototype</div>
+        <div class="ph-desc">Test all displays, SD, sensors and UART link independently before combining. Print enclosure and test hinge rotation.</div>
+        <div class="ph-status pending">Pending</div>
+      </div>
+      <div class="phase-row">
+        <div class="ph-num">3</div>
+        <div class="ph-title">Firmware Foundation</div>
+        <div class="ph-desc">Display manager, SD file reader, input handler, power management and RTC. Unencrypted first.</div>
+        <div class="ph-status pending">Pending</div>
+      </div>
+      <div class="phase-row">
+        <div class="ph-num">4</div>
+        <div class="ph-title">Feature Layer</div>
+        <div class="ph-desc">GPS display, file browser, sensor readouts, battery reporting. Full T-series feature set.</div>
+        <div class="ph-status pending">Pending</div>
+      </div>
+      <div class="phase-row">
+        <div class="ph-num">5</div>
+        <div class="ph-title">Firmware Hardening</div>
+        <div class="ph-desc">CRC checks, chip binding, obfuscation, signed binaries. Only after firmware is stable.</div>
+        <div class="ph-status pending">Pending</div>
+      </div>
+      <div class="phase-row">
+        <div class="ph-num">6</div>
+        <div class="ph-title">Physical Build</div>
+        <div class="ph-desc">Move off breadboard. Final enclosure print, permanent solder, cable management.</div>
+        <div class="ph-status pending">Pending</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">Phantom<span>Grid</span></div>
+  <div class="hex">4748 2d54 2d56 312e 30 2f2f 454e 434c 4f53 5552 452f 4849 4e47 45</div>
+  <div class="foot-right">
+    PG-T-V.1 / REV.002<br>
+    ENCLOSURE / AIR-GAPPED
+  </div>
+</footer>
+
+</body>
+</html>
