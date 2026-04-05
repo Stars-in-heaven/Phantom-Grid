@@ -26,7 +26,7 @@ The first Tactical series device. Dual-panel, hinged form factor with three inde
 ### Architecture
 
 - **Dual ESP32-C6 SuperMini** — one per side, connected via 4-wire UART hinge link
-- **Left side** — Tactical Overwatch Panel (OLEDs, 5-way nav, GPS, temperature, moisture, battery)
+- **Left side** — Tactical Overwatch Panel (OLEDs, 5-way nav, GPS, moisture, battery)
 - **Right side** — Archive Command Terminal (ILI9341 TFT, microSD, tactile buttons)
 - **Power** — LiPo 2000–2500mAh → TP4056 (dual protection) → 3.3V buck converter → shared rail via hinge
 
@@ -48,12 +48,13 @@ Files are loaded onto the microSD card by **physically removing it**, writing vi
 
 - [x] **Phase 1** — Architecture & Pinout
 - [x] **Phase 2** — Breadboard Prototype
-- [x] **Phase 3** — Firmware Foundation
+- [ ] **Phase 3** — Firmware Foundation
 - [x] **Phase 4** — Feature Layer
-- [x] **Phase 5** — Firmware Hardening
+- [ ] **Phase 5** — Firmware Hardening
 - [ ] **Phase 6** — Physical Build
 
- (working on getting the parts to build the first prototype now)
+ (working on getting the components to build the first
+  prototype to begin firmware)
 
 ---
 
@@ -72,19 +73,26 @@ Files are loaded onto the microSD card by **physically removing it**, writing vi
 
 ```
 phantom-grid/
-├── site/               # Project website (Netlify)
-│   ├── index.html
-│   ├── bom.html
-│   └── trifold.html
-├── docs/               # Reference documents
-│   ├── Phantom_Grid_T-V1_Reference.docx
-│   └── Phantom_Grid_T-V1_Session_Summary.md
-├── firmware/
-│   ├── left/           # Left ESP32 — Tactical Overwatch Panel
-│   └── right/          # Right ESP32 — Archive Command Terminal
-└── hardware/
-    ├── pinout/
-    └── schematics/
+├── Enclosure/               # Case 3d model
+│   ├── Enclosure.f3d
+│   ├── Enclosure.step
+│   └── Enclosure.stl
+|
+├── PCBs/               # Kicad PCB files
+│   ├── left side/
+|   |    ├── left_side.kicad_pcb
+|   |    ├── left_side.kicad_pro
+|   |    └── left_side.kicad_sch
+|   |
+│   └── right side/
+|       ├── right.kicad_pcb
+|       ├── right.kicad_pro
+|       └── right.kicad_sch
+|  
+├── .gitignore
+├── README.md    
+└── LICENSE
+
 ```
 
 ---
